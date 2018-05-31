@@ -28,8 +28,10 @@ function google(app) {
     }, async function(err, httpResponse, body) {
       // res.send(body)
       try {
-        usid= await require('./services/googledata').data(body.access_token);
-        return res.json({usid})
+        data= await require('./services/googledata').data(body.access_token)
+        console.log(data);
+
+        // return res.json({usid})//
       } catch (err) {
         return res.json({
           err: 'Invalid/Missing auth code'

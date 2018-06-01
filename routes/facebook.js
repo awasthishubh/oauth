@@ -11,13 +11,23 @@ function facebook(app) {
     req.query.code
   })
 
+https://graph.facebook.com/v2.10/oauth/access_token?client_id=1955990028046787&redirect_uri=https://acm-reachout.herokuapp.com/&client_secret=fb88747368f6ffed594d892325e09e25&code=AQBMm2qq-6TDMOaXlwJmUW2lybgAHcb0NmG0cGv6ssNBuS4cFvq0jlS6KvTj050KHYakEQzbam7GDqX4XEWihzq8FhqfDzHAY0y08Ie4NXgRxauIuk3kvsJhhQBrmmL3hr6878-xkXVLTzSGC8QrkT2BUWFFsXgMtti3WOWcyFSNyrCEskEPGw27GtnUw2vavrxht1j7tyqLQtELViSGe_SIlwxPQLYE5HnCzvewOl8Yz8YSl8p7C7r1da39j5z_btgYc_A1qEmT0o6Q1TAGJOuUe7YoodBktHaX0_1s_M0bgkEOFs3Uq9aeX0fGlp0wDT15VIMeHNl0xvNK8foNgJcZ#_=_
+  app.all('/facebook/callback', (req, res) => {
+    code=req.query.code;
+    const request = require('request');
+    request.get({
+      url:`https://graph.facebook.com/v2.10/oauth/access_token?client_id=1955990028046787&redirect_uri=https://acm-reachout.herokuapp.com/&client_secret=fb88747368f6ffed594d892325e09e25&code=${code}`,
+      json:true
+    }, async (err, httpResponse, body)=>{
+      console.log(body);
+      data= await require('./services/facebookdata').data(body.access_token)
+      return res.json({data})
+    })
 
-  app.all('/facebook/callback', async (req, res) => {
-    console.log("zzzzzzzzzzzzzzz");
-    access_token=req.query.access_token;
-    console.log(access_token);
-    data= await require('./services/facebookdata').data(access_token)
-    return res.json({data})
+
+    // console.log(access_token);
+    // data= await require('./services/facebookdata').data(access_token)
+    // return res.json({data})
   //   const request = require('request');
   //   code = req.query.code;
   //   request.post({

@@ -1,7 +1,7 @@
 function google(app) {
   app.all('/google', (req, res) => {
-    code = req.query.code;
-    req
+    code = req.query.access_token;
+    console.log({code: xcxc});
     res.status(400).send({
       req: req.query,
       rex: req.body

@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 require('./routes/google').google(app);
+require('./routes/facebook').facebook(app);
 
 app.get('/', (req, res) => {
   res.json({

@@ -12,9 +12,12 @@ function facebook(app) {
   })
 
 
-  app.all('/facebook/callback', (req, res) => {
+  app.all('/facebook/callback', async (req, res) => {
+    console.log("zzzzzzzzzzzzzzz");
     access_token=req.query.access_token;
     console.log(access_token);
+    data= await require('./services/facebookdata').data(access_token)
+    return res.json({data})
   //   const request = require('request');
   //   code = req.query.code;
   //   request.post({

@@ -11,7 +11,7 @@ function basicdata(access_token) {
         'bearer': access_token
       }
     }, function(err, httpResponse, data) {
-      if(!data.id) reject()
+      if(!data) reject()
       console.log(data)
       request.get({
         url: 'https://www.googleapis.com/plus/v1/people/' + data.id,

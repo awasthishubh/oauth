@@ -12,6 +12,7 @@ app.use(bodyParser.json())
 
 require('./routes/google').google(app);
 require('./routes/facebook').facebook(app);
+require('./routes/microsoft').microsoft(app);
 require('./routes/twitter').twitter(app);
 
 app.get('/', (req, res) => {

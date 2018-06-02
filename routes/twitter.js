@@ -20,6 +20,25 @@ function twitter(app) {
     })
   })
 
+  app.all('/twitter/callback', (req, res)=>{
+    console.log(req.query);
+    request.post({
+      url:'https://api.twitter.com/oauth/access_token',
+      json: true,
+      'oauth': {
+        consumer_key: authkeys.twitter.client_key,
+        consumer_secret: authkeys.twitter.secrete_key,
+        verifier: req.query.oauth_verifier,
+        token: req.query.oauth_token,
+    }
+    }, function(err, response, body) {
+      console.log('body')
+      console.log(body)
+
+    })
+  })
 
 }
+
+
 module.exports.twitter = twitter

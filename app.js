@@ -14,6 +14,7 @@ require('./routes/google').google(app);
 require('./routes/facebook').facebook(app);
 require('./routes/microsoft').microsoft(app);
 require('./routes/twitter').twitter(app);
+require('./routes/instagram').instagram(app);
 
 app.get('/', (req, res) => {
   res.json({

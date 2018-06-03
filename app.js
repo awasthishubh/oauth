@@ -1,5 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser')
+const keys = require('./config/keys');
+const mongoose = require('mongoose');
+require('./models/oauth');
+
+mongoose.connect(keys.dburl)
+
 const app = express();
 
 app.use((req,res, next)=>{
@@ -23,5 +29,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(3000,()=>{
-  console.log("Server started at port 30000");
+  console.log('\x1b[36m%s\x1b[0m',"Server started at port 30000");
 })

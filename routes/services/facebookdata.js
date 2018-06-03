@@ -14,15 +14,14 @@ function basicdata(access_token) {
 
     if(!data) reject()
     else if(!(data.id)) reject()
-    // console.log(data);
     resolve(data.id)
-    // console.log(photo);
 
     details={
       usid: data.id
       name: data.name,
       email: data.email,
       photo: photo.data.url,
+      provide: 'Facebook'
       token: access_token,
       raw_dat: {data, photo}
     }

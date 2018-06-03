@@ -21,7 +21,6 @@ function basicdata(query, verifier) {
         }
 
       })
-    existed=addData(details)
     console.log(data);
 
     details={
@@ -34,9 +33,11 @@ function basicdata(query, verifier) {
       token: {query,verifier},
       raw_dat: {data}
     }
+    addData(details, function(existed) {
+      console.log(existed);
+      resolve({id:data.id, existed})
+    })
     console.log(details);
-
-    resolve(data.id_str)
   });
 }
 

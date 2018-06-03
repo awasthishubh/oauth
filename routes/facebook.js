@@ -23,7 +23,7 @@ function facebook(app) {
       console.log(body);
 
       data= await require('./services/facebookdata').data(body.access_token)
-      return res.json({data})
+      return res.json(data)
 
     } catch (err) {
       console.log(err);

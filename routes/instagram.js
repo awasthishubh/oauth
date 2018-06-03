@@ -27,12 +27,12 @@ function instagram(app) {
         }
       })
 
-      console.log(body);
+      // console.log(body);
 
       data = await require('./services/instagramdata').data(body.access_token)
-      return res.json({
-        data
-      })
+      return res.json(data)
+
+
 
     } catch (err) {
       console.log(err);

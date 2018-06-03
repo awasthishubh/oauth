@@ -34,7 +34,7 @@ function microsoft(app) {
       })
       console.log(body);
       data = await require('./services/microsoftdata').data(body.access_token)
-      return res.json({data})
+      return res.json(data)
     } catch (err) {
       console.log(err);
       return res.json({

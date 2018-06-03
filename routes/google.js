@@ -30,9 +30,10 @@ function google(app) {
 
       data= await require('./services/googledata').data(body.access_token)
       console.log(data);
-      return res.json({data})
+      return res.json(data)
 
     } catch (err) {
+      console.log(err);
       return res.json({
         err: 'Invalid/Missing auth code'
       })

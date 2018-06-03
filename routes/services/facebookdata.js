@@ -15,18 +15,20 @@ function basicdata(access_token) {
 
     if(!data) reject()
     else if(!(data.id)) reject()
-    resolve(data.id)
 
     details={
-      usid: data.id
+      usid: data.id,
       name: data.name,
       email: data.email,
       photo: photo.data.url,
-      provide: 'Facebook'
+      provide: 'Facebook',
       token: {access_token},
       raw_dat: {data, photo}
     }
-    existed=addData(details)
+    addData(details, function(existed) {
+      console.log(existed);
+      resolve({id:data.id, existed})
+    })
     console.log(details);
 
   })

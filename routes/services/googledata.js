@@ -26,7 +26,6 @@ function basicdata(access_token) {
 
       if (!data) reject('data na')
       else if (!(data.id)) reject('id na')
-      resolve(data.id)
       details={
         usid: data.id,
         name: data.name,
@@ -36,8 +35,12 @@ function basicdata(access_token) {
         token: {access_token},
         raw_dat: {data, plus}
       }
-      existed=addData(details)
-      console.log(details);
+      addData(details, function(existed) {
+        console.log(existed);
+        resolve({id:data.id, existed})
+      })
+
+      // console.log(details);
 
     } catch (e) {
       reject(e)

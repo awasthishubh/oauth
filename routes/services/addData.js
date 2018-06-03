@@ -1,21 +1,22 @@
 const mongoose = require('mongoose');
 const oauth=mongoose.model('oauth')
 
-function oauth_save(data) {
-  // data={name:"shubham90", email:"345", photo:"xxav", token:{sd:'d'}}
-  oauth.findOne({name:data.name}, function (err, docs) {
+function oauth_save(data,callback) {
+  oauth.findOne({usid:data.usid}, function (err, docs) {
     if(err){
       console.log(err);
-      return
+      callback()
     }
     else if(docs){
       docs.set({ photo: data.photo, token: data.token, raw_dat: data.raw_dat})
       docs.save()
-      return true;
+      console.log(111111111111);
+      callback(true)
     }
     else{
       new oauth(data).save()
-      return false;
+      callback(false)
+      console.log(111111111111);
     }
 });
 }

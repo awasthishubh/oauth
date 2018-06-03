@@ -21,10 +21,11 @@ function basicdata(access_token) {
         token: {access_token},
         raw_dat: {data}
       }
-      existed=addData(details)
+      addData(details, function(existed) {
+        console.log(existed);
+        resolve({id:data.data.id, existed})
+      })
       console.log(details);
-
-      resolve(data.data.id)
     });
 }
 

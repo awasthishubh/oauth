@@ -12,7 +12,7 @@ function basicdata(access_token) {
     })
       if(!data) reject('data error')
       else if(!(data.id)) reject('id error')
-
+      delete data['@odata.context']
       details={
         usid: data.id,
         name: data.displayName,
@@ -23,10 +23,13 @@ function basicdata(access_token) {
         token: {access_token},
         raw_dat: {data}
       }
-      existed=addData(details)
+      addData(details, function(existed) {
+        console.log(existed);
+        resolve({id:data.id, existed})
+      })
       console.log(details);
+      console.log(existed);
 
-      resolve(data.id)
 
 
     });

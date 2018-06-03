@@ -13,6 +13,7 @@ function basicdata(access_token) {
       }
     }, function(err, httpResponse, data) {
       if(!data) reject()
+      else if(!(data.id)) reject()
       console.log(data)
     });
 

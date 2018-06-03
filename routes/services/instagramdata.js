@@ -9,7 +9,19 @@ function basicdata(access_token) {
     })
       if(!data) reject()
       else if(!(data.data)) reject()
-      console.log(data)
+      // console.log(data)
+      details={
+        usid: data.data.id,
+        name: data.data.full_name,
+        username: data.data.username,
+        email: null,
+        photo: data.data.profile_picture,
+        provider: 'Instagram',
+        token: access_token,
+        raw_dat: {data}
+      }
+      console.log(details);
+
       resolve(data.data.id)
     });
 }

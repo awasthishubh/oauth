@@ -23,14 +23,22 @@ function basicdata(access_token) {
         }
       })
 
-      if (!data) reject()
-      else if (!(data.id)) reject()
-      console.log(data)
-      console.log(photo)
+      if (!data) reject('data na')
+      else if (!(data.id)) reject('id na')
       resolve(data.id)
+      details={
+        usid: data.id,
+        name: data.name,
+        email: data.email,
+        photo: data.picture,
+        provider: 'Google',
+        token: access_token,
+        raw_dat: {data, photo}
+      }
+      console.log(details);
 
     } catch (e) {
-      reject()
+      reject(e)
     }
   });
 }

@@ -7,7 +7,7 @@ function twitter(app) {
       url:'https://api.twitter.com/oauth/request_token',
       json: true,
       'oauth': {
-        // callback: 'http://localhost:3000/twitter',
+        callback: authkeys.twitter.callback,
         consumer_key: authkeys.twitter.client_key,
         consumer_secret: authkeys.twitter.secrete_key
     }
@@ -31,9 +31,20 @@ function twitter(app) {
         verifier: req.query.oauth_verifier,
         token: req.query.oauth_token,
     }
-    }, function(err, response, body) {
-      console.log('body')
+  }, async function(err, response, body) {
       console.log(body)
+      try {
+        console.log(body);
+        data = await require('./services/twitterdata').data(body)
+        return res.json({
+          data
+        })
+      } catch (err) {
+        console.log(err);
+        return res.json({
+          err: 'Invalid/Missing auth code'
+        })
+      }
 
     })
   })

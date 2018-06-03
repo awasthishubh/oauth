@@ -1,13 +1,13 @@
 const authkeys = require('../../config/keys').auth;
-const request = require('request');
+const rp = require('request-promise');
 
 function basicdata(query) {
 
-  return new Promise(function(resolve, reject) {
+  return new Promise(async function(resolve, reject) {
   query=JSON.parse('{"' + decodeURI(query.replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}')
   url=`https://api.twitter.com/1.1/users/show.json?oauth_token_secret=${query.oauth_token_secret}&user_id=${query.user_id}&screen_name=${query.screen_name}`,
 
-    request.get({
+    data=await rp.get({
       url,
       json: true,
       'oauth': {
@@ -19,10 +19,10 @@ function basicdata(query) {
       'content-type':'application/x-www-form-urlencoded'
     }
 
-    }, function(err, httpResponse, data) {
+  })
+      console.log(data);
       resolve(data.id_str)
     });
-  })
 }
 
 module.exports.data = basicdata;

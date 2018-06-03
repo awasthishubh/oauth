@@ -1,4 +1,4 @@
-const request = require('request');
+const rp = require('request-promise');
 const authkeys = require('../config/keys').auth;
 
 function facebook(app) {
@@ -12,23 +12,26 @@ function facebook(app) {
     res.end();
   })
 
-  app.all('/facebook/callback', (req, res) => {
+  app.all('/facebook/callback', async (req, res) => {
     code=req.query.code;
-    const request = require('request');
-    request.get({
-      url:`https://graph.facebook.com/v2.10/oauth/access_token?client_id=${authkeys.facebook.client_key}&redirect_uri=${authkeys.facebook.callback}&client_secret=${authkeys.facebook.secrete_key}&code=${code}`,
-      json:true
-    }, async (err, httpResponse, body)=>{
+    try{
+      body= await rp.get({
+        url:`https://graph.facebook.com/v2.10/oauth/access_token?client_id=${authkeys.facebook.client_key}&redirect_uri=${authkeys.facebook.callback}&client_secret=${authkeys.facebook.secrete_key}&code=${code}`,
+        json:true
+      })
+
       console.log(body);
-      try{
-        data= await require('./services/facebookdata').data(body.access_token)
-        return res.json({data})
-      } catch (err) {
-        return res.json({
-          err: 'Invalid/Missing auth code'
-        })
-      }
-    })
+
+      data= await require('./services/facebookdata').data(body.access_token)
+      return res.json({data})
+
+    } catch (err) {
+      console.log(err);
+      return res.json({
+        err: 'Invalid/Missing auth code'
+      })
+    }
+  })
 
 
     // console.log(access_token);
@@ -61,6 +64,6 @@ function facebook(app) {
   //   })
     //
     // console.log("dfdfdfdf");
-  })
+  // })
 }
 module.exports.facebook = facebook

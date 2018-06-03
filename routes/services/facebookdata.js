@@ -1,24 +1,24 @@
-const request = require('request');
+const rp = require('request-promise');
 
 function basicdata(access_token) {
-  return new Promise(function(resolve, reject) {
-    console.log('adsdsdsdsdsd');
-    request.get({
+  return new Promise(async function(resolve, reject) {
+
+    data= await rp.get({
       url: 'https://graph.facebook.com/me?access_token='+access_token+'&fields=id,name,email',
       json:true,
-    }, function(err, httpResponse, data) {
-      if(!data) reject()
-      else if(!(data.id)) reject()
-      console.log(data);
-      resolve(data.id)
     })
-
-    request.get({
+    photo = await rp.get({
       url: 'https://graph.facebook.com/v3.0/me/picture?access_token='+access_token+'&format=json&redirect=false&type=large',
       json:true,
-    }, function(err, httpResponse, data) {
-      console.log(data);
     })
+
+    if(!data) reject()
+    else if(!(data.id)) reject()
+    console.log(data);
+    resolve(data.id)
+
+
+    console.log(photo);
   })
 }
 

@@ -12,7 +12,6 @@ function twitter(app) {
         consumer_secret: authkeys.twitter.secrete_key
       }
     })
-    console.log(body)
     res.writeHead(303, {
       Location: 'https://api.twitter.com/oauth/authenticate?' + body
     });
@@ -32,10 +31,9 @@ function twitter(app) {
         token: req.query.oauth_token,
       }
     })
-    console.log(body)
     try {
       console.log(body);
-      data = await require('./services/twitterdata').data(body)
+      data = await require('./services/twitterdata').data(body,req.query.oauth_verifier)
       return res.json({
         data
       })

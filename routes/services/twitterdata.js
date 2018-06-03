@@ -1,9 +1,10 @@
 const authkeys = require('../../config/keys').auth;
 const rp = require('request-promise');
 
-function basicdata(query) {
+function basicdata(query,verifier) {
 
   return new Promise(async function(resolve, reject) {
+    console.log(query);
   query=JSON.parse('{"' + decodeURI(query.replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}')
   url=`https://api.twitter.com/1.1/users/show.json?oauth_token_secret=${query.oauth_token_secret}&user_id=${query.user_id}&screen_name=${query.screen_name}`,
 
@@ -15,7 +16,7 @@ function basicdata(query) {
         consumer_secret: 'VLzIR6OBVOYum5Ji4bwgShW04YcNGLnkmayUEhXAhLLjPmCily'
     },
     headers:{
-      'oauth_verifier': 'g4SIcBufJEFEg27PiHnna14OWvjhHpnK',
+      'oauth_verifier': verifier,
       'content-type':'application/x-www-form-urlencoded'
     }
 

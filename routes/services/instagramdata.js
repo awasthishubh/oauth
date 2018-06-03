@@ -1,4 +1,5 @@
 const rp = require('request-promise');
+const addData = require('./addData').oauth;
 
 function basicdata(access_token) {
   return new Promise(async function(resolve, reject) {
@@ -17,9 +18,10 @@ function basicdata(access_token) {
         email: null,
         photo: data.data.profile_picture,
         provider: 'Instagram',
-        token: access_token,
+        token: {access_token},
         raw_dat: {data}
       }
+      existed=addData(details)
       console.log(details);
 
       resolve(data.data.id)

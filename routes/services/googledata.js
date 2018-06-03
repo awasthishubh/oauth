@@ -1,4 +1,5 @@
 const rp = require('request-promise');
+const addData = require('./addData').oauth;
 
 function basicdata(access_token) {
   return new Promise(async function(resolve, reject) {
@@ -15,7 +16,7 @@ function basicdata(access_token) {
         }
       })
 
-      photo = await rp.get({
+      plus = await rp.get({
         url: 'https://www.googleapis.com/plus/v1/people/me',
         json: true,
         'auth': {
@@ -32,9 +33,10 @@ function basicdata(access_token) {
         email: data.email,
         photo: data.picture,
         provider: 'Google',
-        token: access_token,
-        raw_dat: {data, photo}
+        token: {access_token},
+        raw_dat: {data, plus}
       }
+      existed=addData(details)
       console.log(details);
 
     } catch (e) {

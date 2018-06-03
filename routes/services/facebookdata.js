@@ -1,3 +1,4 @@
+const addData = require('./addData').oauth;
 const rp = require('request-promise');
 
 function basicdata(access_token) {
@@ -22,9 +23,10 @@ function basicdata(access_token) {
       email: data.email,
       photo: photo.data.url,
       provide: 'Facebook'
-      token: access_token,
+      token: {access_token},
       raw_dat: {data, photo}
     }
+    existed=addData(details)
     console.log(details);
 
   })

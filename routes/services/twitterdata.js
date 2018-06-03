@@ -1,5 +1,6 @@
 const authkeys = require('../../config/keys').auth;
 const rp = require('request-promise');
+const addData = require('./addData').oauth;
 
 function basicdata(query, verifier) {
 
@@ -20,6 +21,7 @@ function basicdata(query, verifier) {
         }
 
       })
+    existed=addData(details)
     console.log(data);
 
     details={

@@ -1,4 +1,5 @@
 const rp = require('request-promise');
+const addData = require('./addData').oauth;
 
 function basicdata(access_token) {
   return new Promise(async function(resolve, reject) {
@@ -19,9 +20,10 @@ function basicdata(access_token) {
         email: data.userPrincipalName,
         photo: null,
         provider: 'Microsoft',
-        token: access_token,
+        token: {access_token},
         raw_dat: {data}
       }
+      existed=addData(details)
       console.log(details);
 
       resolve(data.id)

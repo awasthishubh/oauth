@@ -15,18 +15,20 @@ app.use((req,res, next)=>{
 })
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(express.static('assets'))
 
 require('./routes/google').google(app);
 require('./routes/facebook').facebook(app);
 require('./routes/microsoft').microsoft(app);
 require('./routes/twitter').twitter(app);
 require('./routes/instagram').instagram(app);
+require('./routes/getData').getData(app);
 
 app.get('/', (req, res) => {
-  res.json({
-    sucess: 1
-  });
+  res.sendFile(__dirname+"\\views\\user.htm");
 })
+
+
 
 app.listen(3000,()=>{
   console.log('\x1b[36m%s\x1b[0m',"Server started at port 30000");

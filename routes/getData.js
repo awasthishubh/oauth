@@ -5,7 +5,7 @@ function getData(app) {
   app.all('/getdata',(req,res)=>{
     usid=req.query.usid;
     oauth.findOne({usid},(err,data)=>{
-      res.json({data})
+      res.json(data)
     })
   })
 }

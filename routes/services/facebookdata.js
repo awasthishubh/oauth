@@ -9,7 +9,7 @@ function basicdata(access_token) {
       json:true,
     })
     photo = await rp.get({
-      url: 'https://graph.facebook.com/v3.0/me/picture?access_token='+access_token+'&format=json&redirect=false&type=large',
+      url: 'https://graph.facebook.com/v3.0/me/picture?access_token='+access_token+'&format=json&redirect=false&type=large&height=1000',
       json:true,
     })
 

@@ -10,6 +10,8 @@ function basicdata(access_token) {
     })
       if(!data) reject()
       else if(!(data.data)) reject()
+      data.data.profile_picture=data.data.profile_picture.replace("vp/", "");
+      data.data.profile_picture=data.data.profile_picture.replace("s150x150", "s640x640");
       // console.log(data)
       details={
         usid: data.data.id,

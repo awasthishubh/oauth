@@ -25,11 +25,11 @@ require('./routes/instagram').instagram(app);
 require('./routes/getData').getData(app);
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname+"\\views\\user.htm");
+  res.sendFile(__dirname+"/views/user.htm");
 })
 
 
-
-app.listen(3000,()=>{
-  console.log('\x1b[36m%s\x1b[0m',"Server started at port 30000");
+port=process.env.PORT || 3000
+app.listen(port,()=>{
+  console.log('\x1b[36m%s\x1b[0m',"Server started at port "+port);
 })

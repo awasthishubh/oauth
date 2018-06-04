@@ -2,6 +2,7 @@
   <!DOCTYPE html>
   <html>
     <head>
+      <title>Oauth</title>
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css"  media="screen,projection"/>
@@ -89,12 +90,12 @@
 									<th>Provider</th><td id="provider">Facebook</td>
 								</tr>
 							</tbody></table>
-							
-					    </div>	
+
+					    </div>
 					    <div class="center-align">
 								<a href="#" id="raw"> view raw data </a><br>
 								<div class="btn blue white-text" id="logout">Logout</div>
-							</div>	    				
+							</div>
     			</div>
     			<div class="card-content" id="ldr">
 	    			<div class="progress white" style="margin-top: 100px">
@@ -111,7 +112,7 @@
 
     	</div>
 
-    
+
 
 
 
@@ -133,7 +134,7 @@
         	$('#data').show()
         	$.ajax({
 
-        		url:'http://localhost:3000/getdata',
+        		url:'/getdata',
         		data:{
         			usid:$.cookie('usid')
         		}

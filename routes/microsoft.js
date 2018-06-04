@@ -36,7 +36,13 @@ function microsoft(app) {
       data = await require('./services/microsoftdata').data(body.access_token)
       res.cookie('usid', data.id)
       res.cookie('existed', data.existed)
-      return res.json(data)
+      return res.send(`<script>
+        window.onunload = refreshParent;
+        function refreshParent() {
+            window.opener.location.reload();
+        }
+        window.close();
+    </script>`)
     } catch (err) {
       console.log(err);
       return res.json({

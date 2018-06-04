@@ -21,7 +21,7 @@ function basicdata(access_token) {
       name: data.name,
       email: data.email,
       photo: photo.data.url,
-      provide: 'Facebook',
+      provider: 'Facebook',
       token: {access_token},
       raw_dat: {data, photo}
     }

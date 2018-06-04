@@ -26,12 +26,9 @@ function facebook(app) {
       res.cookie('usid', data.id)
       res.cookie('existed', data.existed)
       return res.send(`<script>
-        window.onunload = refreshParent;
-        function refreshParent() {
-            window.opener.location.reload();
-        }
-        window.close();
-    </script>`)
+          window.opener.location.reload();
+          window.close();
+        </script>`)
 
     } catch (err) {
       console.log(err);

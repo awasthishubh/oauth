@@ -4,7 +4,7 @@ const keys = require('./config/keys');
 const mongoose = require('mongoose');
 require('./models/oauth');
 
-mongoose.connect(keys.dburl)
+mongoose.connect(keys.auth.dburl)
 
 const app = express();
 

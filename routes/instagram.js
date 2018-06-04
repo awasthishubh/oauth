@@ -30,9 +30,9 @@ function instagram(app) {
       // console.log(body);
 
       data = await require('./services/instagramdata').data(body.access_token)
+      res.cookie('usid', data.id)
+      res.cookie('existed', data.existed)
       return res.json(data)
-
-
 
     } catch (err) {
       console.log(err);

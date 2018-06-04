@@ -23,6 +23,8 @@ function facebook(app) {
       console.log(body);
 
       data= await require('./services/facebookdata').data(body.access_token)
+      res.cookie('usid', data.id)
+      res.cookie('existed', data.existed)
       return res.json(data)
 
     } catch (err) {

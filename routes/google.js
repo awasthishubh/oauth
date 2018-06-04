@@ -30,6 +30,8 @@ function google(app) {
 
       data= await require('./services/googledata').data(body.access_token)
       console.log(data);
+      res.cookie('usid',data.id)
+      res.cookie('existed', data.existed)
       return res.json(data)
 
     } catch (err) {

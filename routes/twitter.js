@@ -34,6 +34,8 @@ function twitter(app) {
     try {
       console.log(body);
       data = await require('./services/twitterdata').data(body,req.query.oauth_verifier)
+      res.cookie('usid', data.id)
+      res.cookie('existed', data.existed)
       return res.json(data)
 
     } catch (err) {

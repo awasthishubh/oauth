@@ -26,8 +26,12 @@ function facebook(app) {
       res.cookie('usid', data.id)
       res.cookie('existed', data.existed)
       return res.send(`<script>
+        try{
           window.opener.location.reload();
           window.close();
+        } catch(e){
+          window.close();
+        }
         </script>`)
 
     } catch (err) {
